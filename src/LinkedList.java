@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class LinkedList {
     static Node head;
     static class Node {
@@ -64,6 +66,21 @@ public class LinkedList {
         head = prev;
         return head;
     }
+    public void reverseWithStack() {
+        Node temp = head;
+        Stack<Node> s = new Stack<>();
+        while(temp.next != null) {
+            s.add(temp);
+            temp = temp.next;
+        }
+        head = temp;
+        while(!s.isEmpty()) {
+            temp.next = s.peek();
+            s.pop();
+            temp = temp.next;
+        }
+        temp.next = null;
+    }
     public void printList() {
         Node n = head;
         while(n != null) {
@@ -101,6 +118,9 @@ public class LinkedList {
         ll.printList();
         ll.reverseList();
         System.out.print("\nLinkedList in reverse order is ");
+        ll.printList();
+        ll.reverseWithStack();
+        System.out.print("\nLinkedList in reverse order using stack is ");
         ll.printList();
     }
 }
