@@ -1,5 +1,5 @@
 public class LinkedList {
-    Node head;
+    static Node head;
     static class Node {
         int data;
         Node next;
@@ -53,6 +53,17 @@ public class LinkedList {
             return;
         prev.next = temp.next;
     }
+    Node reverseList() {
+        Node next = null, prev = null, curr = head;
+        while(curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+        return head;
+    }
     public void printList() {
         Node n = head;
         while(n != null) {
@@ -87,6 +98,9 @@ public class LinkedList {
         ll.printList();
         ll.insertAfter(ll.head.next, 8);
         System.out.print("\nLinkedList post insertion after an element is ");
+        ll.printList();
+        ll.reverseList();
+        System.out.print("\nLinkedList in reverse order is ");
         ll.printList();
     }
 }
